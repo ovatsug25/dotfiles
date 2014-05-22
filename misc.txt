@@ -1,3 +1,5 @@
+chsh
+
 say
 screencapture -C -M // WILL MAIL
 screencapture -c -w // mouse, no dropshawdow, to clipboard
