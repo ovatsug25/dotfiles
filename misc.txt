@@ -1,4 +1,5 @@
 chsh
+dig // dns lookup
 
 say
 screencapture -C -M // WILL MAIL
