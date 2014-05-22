@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+#
+# A smoscript bin replacement for unix platforms for use by the Rails
+# db:structure:dump rake task for the ActiveRecord SQL Server adapter.
+#
+# Make sure you have ssh access to your Windows box using the host
+# name in your database.yml. If your windows ssh username is different
+# than your unix username, setup a ~/.ssh/conf entry that fills in the
+# details.
+#
+
+args = ARGV.dup
+
+host = args[1].dup
+args[1] = 'localhost'
+
+file = args[9].dup
+file.sub! 'db', 'db/'
+args[9] = file
+
+cmd = args.join(' ')
+cdir = `pwd`.chomp
+
+# `ssh #{host} \"mkdir -p db && smoscript #{cmd}\"`
+# `scp #{host}:#{file} #{cdir}/#{file}` if file =~ /structure/
+`ssh ovatsug25@10.228.31.39 \"mkdir -p db && smoscript #{cmd}\"`
+`scp ovatsug25@10.228.31.39:#{file} #{cdir}/#{file}` if file =~ /structure/
