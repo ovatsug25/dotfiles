@@ -55,3 +55,4 @@ PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h $(git_prompt) \[\e[35m\]\w\[\e[0m\]\n\$ '
 # Added by Canopy installer on 2013-09-30
 # VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make bashprompt show that Canopy is active, otherwise 1
 # VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/ovatsug25/Library/Enthought/Canopy_64bit/User/bin/activate
+export PATH="$HOME/.rbenv/bin:$PATH"
