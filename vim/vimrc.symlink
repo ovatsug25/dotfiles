@@ -1,4 +1,194 @@
-syntax on
+" HELLO!
+" Remove any trailing whitespace that is in the file "
+autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+set nocompatible
+filetype on
+filetype indent on
+filetype plugin on
+
+nnoremap <F12>f :exe ':silent !open -a /Applications/Firefox.app %'<CR>
+nnoremap <F12>c :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
+nnoremap <F12>g :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
+nnoremap <F12>s :exe ':silent !open /Applications/Safari.app %'<CR>
+
+set encoding=utf-8
+set fileencoding=utf-8
+
+" Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+"---   :BundleInstall
+Bundle 'tomtom/tcomment_vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'vim-scripts/buftabs'
+Bundle 'vim-scripts/stata.vim'
+
+" augroup filetypedetect
+"   autocmd! BufRead,BufNewFile *.ado       set filetype=stata
+"   autocmd! BufRead,BufNewFile *.class    set filetype=stata
+"   autocmd! BufRead,BufNewFile *.do         set filetype=stata
+" augrougp END
+
+" Bundle 'tpope/vim-fugitive.git'
+
+" noremap <C-f1> :bprev<CR>
+" noremap <C-f2> :bnext<CR>
+
+noremap W :bprev<CR>
+" noremap r :bnext<CR>
+
+noremap \ ,
+let mapleader = ","
+
+" Spell checking
+""" Pressing \ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+" Get Search to appear in the middle of the screen
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+" Get cursor to appear in the middle of the screen by setting SO large
+" set scrolloff=5
+" set so=5
+nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+
+
+" Change to current working directory and display change
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" No display  nnoremap ,cd :cd %:p:h<CR>
+cabbr <expr> %% expand('%:p:h')
+nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
+
+" Save and Browse
+nnoremap <Leader>w :w<CR>:Ex<CR><CR>
+nnoremap <Leader>ex :Ex<CR>
+"let g:ctrlp_map = '<M-p>'
+"let g:ctrlp_cmd = 'CtrlP'
+"nnoremap <C-p> <Leader>p
+
+" Tabs
+""" makes tabs characters 2 columns long
+set tabstop=2
+""" controls how tabs are set w/indent operations
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+" Tabs
+map <leader>tt :tabnew<CR>
+map <leader>te :tabedit
+map <leader>tc :tabclose<CR>
+map <leader>to :tabonly<CR>
+" gt
+map <leader>tn :tabnext<CR>
+" gT
+map <leader>tp :tabprevious<CR>
+map <leader>tf :tabfirst<CR>
+map <leader>tl :tablast<CR>
+map <leader>tm :tabmove
+
+" OPEN FILES IN TABS
+" vim -p file1 file2 file3
+" set tabpagemax=15
+" set showtabline=2
+" REPLACE IN ALL TABS...
+" :tabdo %s/foo/bar/g
+" SET TAB NUMBER
+" :tabm 5 for position 6
+" nnoremap ,t <Esc>:tabnew<CR
+" imap ,t <Esc>:tabnew<CR
+
+"folding settings
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
+" Apperance
+""" Syntax highlighting
+syntax enable
+""" Allows for syntax highliting
+syntax on
+set antialias
+""" Shows line number starting from line 1
+" set relativenumber "set number
+" hi relativenumber term=none cterm=none ctermbg=0
+""" Allows long line wrapping /// set wrap
+set nowrap
+
+" set cuc " Highlight current column
+set cul " Highlight current line
+
+""" Adjust highlight for current line/column
+" hi CursorLine term=none cterm=none ctermbg=0
+" hi CursorColumn term=none cterm=none ctermbg=0
+
+
+""" Makes background black
+"set bg=dark
+" colorscheme tomorrow-night-bright
+" set background=dark
+
+" Statusline
+set laststatus=2
+set statusline=
+" set statusline +=%3*%<
+" set statusline +=%3*%f
+" set statusline +=%3*\ %h%m%r
+" set statusline +=%3*\%{&spelllang}
+" set statusline +=%3*%y
+set statusline +=%1*\%=
+set statusline +=%2*\%{v:register}
+set statusline +=%1*\ %l,%c%V%*
+set statusline +=%2*\ -
+set statusline +=%1*\ \%L%*
+
+" hi User1 guifg=#424242 ctermfg=0 guibg=#222222 "ctermbg gui cterm
+" hi User2 guifg=#222222 ctermfg=1 guibg=#424242
+" hi User3 guifg=#222222 ctermfg=1 guibg=#424242 ctermbg=0
+" hi User4 guifg=#a0ee40 guibg=#222222
+" hi User5 guifg=#eeee40 guibg=#222222
+
+" Play nice with modern computers
+""" Enable mouse support in console "
+set mouse=a
+""" Enable system wide copy paste
+set clipboard+=unnamed
+""" Set 256 colors
+set t_Co=256
+""" OS X keybinding for end of line, beginning of line
+map <D-><Left> ^
+map <D-><Right> $
+inoremap <D-Left> <Esc>^i
+inoremap <D-Right> <Esc>$i
+
+" Search
+""" Incremental searching is sexy
+set incsearch
+""" Highlight things that we find with the search
+set hlsearch
+""" If capitalized, will search for capitals, otherwise ignore
+set ignorecase
+set smartcase
+
+" Set GUI options
+""" Change default font
+set guifont=Monaco:h18
+""" Hide toolbar
+set guioptions-=T
+
+"""""" noremap <Up> ""
+"""""" noremap <Down> ""
+"""""" noremap <Left> ""
+map <S-Down> <C-E>
+map <S-Up> <C-Y>
+
+" For highlighting trailing whitespaces
+nnoremap <Leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
+nnoremap <Leader>wf :match<CR>

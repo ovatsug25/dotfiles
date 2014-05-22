@@ -1,0 +1,73 @@
+Script started on Wed May 21 14:22:45 2014
+[?1034hbash-3.2$ ls
+LICENSE.md   [1m[34mbash[39;49m[0m         [1m[34mfunctions[39;49m[0m    [1m[34mosx[39;49m[0m          [1m[34mscript[39;49m[0m       [1m[34mvim[39;49m[0m
+README.md    [1m[34mbin[39;49m[0m          [1m[34mgit[39;49m[0m          [1m[34mpython[39;49m[0m       [1m[34msublime2[39;49m[0m     [1m[34mxcode[39;49m[0m
+[1m[34matom.symlink[39;49m[0m bootstrap    [1m[34mhomebrew[39;49m[0m     [1m[34mruby[39;49m[0m         [1m[34msystem[39;49m[0m       [1m[34mzsh[39;49m[0m
+bash-3.2$ cd ..
+bash-3.2$ sour .[K[Kce ./[K[K!/[K[K~?[K/.bash_profile
+]0;~
+[32mgtav@gtk-admin-2  [35m~[0m
+$ ls
+[1m[34mApplications[39;49m[0m           casp.js                john_resig_notes_2.txt
+[1m[34mDepthImage[39;49m[0m             click.js               [1m[34mkinect[39;49m[0m
+[1m[34mDesktop[39;49m[0m                [1m[34mcompfix[39;49m[0m                [1m[34mmardom_ship_manager[39;49m[0m
+[1m[34mDocuments[39;49m[0m              [1m[34meuler[39;49m[0m                  [1m[34mmy_bin[39;49m[0m
+[1m[34mDownloads[39;49m[0m              find_private_key       [1m[34movatsug25.github.com[39;49m[0m
+[1m[34mLibrary[39;49m[0m                [1m[34mfinlay[39;49m[0m                 prob.py
+[1m[34mMovies[39;49m[0m                 [1m[34mfreetds-0.91[39;49m[0m           [1m[34mprogram[39;49m[0m
+[1m[34mMusic[39;49m[0m                  git.js                 rasterize.js
+[1m[34mPictures[39;49m[0m               [1m[34mhaskell[39;49m[0m                [1m[34mreps[39;49m[0m
+[1m[34mPublic[39;49m[0m                 hello.cs               [1m[34mstatsmodels[39;49m[0m
+[1m[34mSites[39;49m[0m                  [31mhello.exe[39;49m[0m              [1m[34mtmp[39;49m[0m
+[1m[34mai[39;49m[0m                     [1m[34midonethis-restore[39;49m[0m      world_bank_scrape.rb
+[1m[34marduino[39;49m[0m                john_resig_notes
+[1m[34mc_prog_lang[39;49m[0m            john_resig_notes.txt
+]0;~
+[32mgtav@gtk-admin-2  [35m~[0m
+$ ls
+[1m[34mApplications[39;49m[0m           casp.js                john_resig_notes_2.txt
+[1m[34mDepthImage[39;49m[0m             click.js               [1m[34mkinect[39;49m[0m
+[1m[34mDesktop[39;49m[0m                [1m[34mcompfix[39;49m[0m                [1m[34mmardom_ship_manager[39;49m[0m
+[1m[34mDocuments[39;49m[0m              [1m[34meuler[39;49m[0m                  [1m[34mmy_bin[39;49m[0m
+[1m[34mDownloads[39;49m[0m              find_private_key       [1m[34movatsug25.github.com[39;49m[0m
+[1m[34mLibrary[39;49m[0m                [1m[34mfinlay[39;49m[0m                 prob.py
+[1m[34mMovies[39;49m[0m                 [1m[34mfreetds-0.91[39;49m[0m           [1m[34mprogram[39;49m[0m
+[1m[34mMusic[39;49m[0m                  git.js                 rasterize.js
+[1m[34mPictures[39;49m[0m               [1m[34mhaskell[39;49m[0m                [1m[34mreps[39;49m[0m
+[1m[34mPublic[39;49m[0m                 hello.cs               [1m[34mstatsmodels[39;49m[0m
+[1m[34mSites[39;49m[0m                  [31mhello.exe[39;49m[0m              [1m[34mtmp[39;49m[0m
+[1m[34mai[39;49m[0m                     [1m[34midonethis-restore[39;49m[0m      world_bank_scrape.rb
+[1m[34marduino[39;49m[0m                john_resig_notes
+[1m[34mc_prog_lang[39;49m[0m            john_resig_notes.txt
+]0;~
+[32mgtav@gtk-admin-2  [35m~[0m
+$ cd dotfi[Kiles/dotfiles[C[C[C[C[C[C[1Pdotfiles[C[C[C[C[C
+bash: cd: dotfiles: No such file or directory
+]0;~
+[32mgtav@gtk-admin-2  [35m~[0m
+$ cd . [Kdotfiles/
+]0;~/.dotfiles
+[32mgtav@gtk-admin-2  [master(B[m] [35m~/.dotfiles[0m
+$ vim cim[K[K[Kvim/.vim[K[K[K[Kvimrc.symlink 
+[?1000h[?1049h[?1h=[1;25r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[25;1H"vim/vimrc.symlink" 193L, 4905C[1;1H[4m[34m" Remove any trailing whitespace that is in the file "[m[4m                          [m[2;1H[38;5;130mautocmd[m [32mBufRead[m,[32mBufWrite[m * [38;5;130mif[m ! &bin | [38;5;130msilent[m! [31m%[m[38;5;130ms[m[35m/[m\s\+$[35m//ge[m | [38;5;130mendif
+
+set[m [35mnocompatible[m
+[38;5;130mfiletype[m [32mon[m
+[38;5;130mfiletype[m [32mindent[m [32mon[m
+[38;5;130mfiletype[m [32mplugin[m [32mon[m
+
+[38;5;130mnnoremap[m [35m<F12>[mf :exe ':silent !open -a /Applications/Firefox.app %'[35m<CR>[m
+[38;5;130mnnoremap[m [35m<F12>[mc :exe ':silent !open -a /Applications/Google\ Chrome.app %'[35m<CR>[m
+[38;5;130mnnoremap[m [35m<F12>[mg :exe ':silent !open -a /Applications/Google\ Chrome.app %'[35m<CR>[m
+[38;5;130mnnoremap[m [35m<F12>[ms :exe ':silent !open /Applications/Safari.app %'[35m<CR>[m
+
+[38;5;130mset[m [35mencoding[m=utf-8
+[38;5;130mset[m [35mfileencoding[m=utf-8
+
+[34m" Vundle[m
+[38;5;130mset[m [35mrtp[m+=~/.vim/bundle/vundle/
+[38;5;130mcall[m vundle#rc[35m()[m
+Bundle [31m'gmarik/vundle'[m
+[34m"---   :BundleInstall[m
+Bundle [31m'tomtom/tcomment_vim'[m
+Bundle [31m'scrooloose/syntastic'[m[24;72H1,1 - 193[>c[?1000l[?1002h[1;1H[?12l[?25h[?25l[25;1H[1-vim/vimrc.symlink][25;22H[K[1;1H[?12l[?25h[?25l[25;1H[1m-- INSERT --[m[25;13H[K[1;23r[1;1H[L[1;25r[1;1H[4m[34m" [m[4m                                                                              [m[2;1H[34m" Remove any trailing whitespace that is in the file "[m[2;55H[K[24;74H3 - 194[1;3H[?12l[?25h

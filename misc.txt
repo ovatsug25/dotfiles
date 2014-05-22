@@ -1,0 +1,59 @@
+say
+screencapture -C -M // WILL MAIL
+screencapture -c -w // mouse, no dropshawdow, to clipboard
+screencapture -T 10 -P //will set a timer
+screencapture -s -t pdf image.pdf
+pbpaste >> tasklist.txt
+open .
+
+http://www.mitchchn.me/2014/and-eight-hundred-more/
+
+for file in *.jpeg; do sips -s format png $file --out $file.png
+open -a Safari
+textutil -convert html article.doc
+textutil -cat rtf article1.doc article2.doc article3.doc
+
+
+TIP #1
+
+You can make the terminal start instantaneously instead of
+it taking several seconds.
+
+Remove the .asl files in:
+/private/var/log/asl/.
+
+Remove the file:
+/users/<username>/Library/Preferences/com.apple.terminal.plist
+
+
+TIP #2
+
+launchctl list
+sudo launchtl load -w ...{apache,nginx,etc}
+sudo launchtl unload ...[path/to/script]...
+
+Store Locations:
+~/Library/LaunchAgents
+/Library/LaunchAgents
+/Library/LaunchDaemons
+/System/Library/LaunchAgents
+/System/Library/LaunchDaemons
+
+
+Explanation:
+http://paul.annesley.cc/2012/09/mac-os-x-launchd-is-cool/
+https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html
+http://www.peterborgapps.com/lingon/
+
+TIP #3
+mdfind -onlyin ~/Documents essay
+mdutil -E // ERASES!!!
+mdutil -i off // TURNS OFF INDEXING!!
+(SIMILAR TO LINUX locate)
+
+TIP #4
+ls ~ | pbcopy
+pbcopy < blogpost.txt
+// grab link to latest google doodle
+pbpaste >> tasklist.txt
+curl http://www.google.com/doodles#oodles/archive | grep -A5 'latest-doodle on' | grep 'img src' | sed s/.*'<img src="\/\/'/''/ | sed s/'" alt=".*'/''/ | pbcopy
