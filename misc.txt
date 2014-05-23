@@ -11,8 +11,13 @@ open .
 
 http://www.mitchchn.me/2014/and-eight-hundred-more/
 
+IMAGES
+=====
 for file in *.jpeg; do sips -s format png $file --out $file.png
+sips -Z 1024 *
+
 open -a Safari
+
 textutil -convert html article.doc
 textutil -cat rtf article1.doc article2.doc article3.doc
 

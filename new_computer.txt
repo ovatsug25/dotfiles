@@ -1,0 +1,46 @@
+
+# Install Homebrew
+# ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+# Install Apple Developer Tools
+# brew install postgresql
+# brew install wget
+# brew install cvs
+
+# Install Git
+# brew install git
+# git config --global user.name "Gustavo Tavares"
+# git config --global user.email "ovatsug25@gmail.com"
+
+# Set up SSH keys
+# https://help.github.com/articles/generating-ssh-keys
+# ssh-keygen -t rsa -C "ovatsug25@gmail.com"
+# ssh -T git@github.com
+# cat ~/.ssh/id_rsa.pub | ssh deployer@10.228.30.175 'cat >> ~/.ssh/authorized_keys'
+# ssh-add # -K on Mac OS X
+
+# Install Ruby
+# git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
+# echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+# echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+# git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+# rbenv install [latest]
+# rbenv global [latest]
+# rbenv rehash
+# git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+# gem install bundler
+# gem install jekyll
+# gem install rails
+# gem install rdiscount
+
+
+# Install FreeTDS
+# curl -o freetds-stable.tgz ftp://ftp.freetds.org/pub/freetds/stable/freetds-stable.tgz
+# curl -O ftp://ftp.freetds.org/pub/freetds/stable/freetds-stable.tgz
+# curl --remote-name ftp://ftp.freetds.org/pub/freetds/stable/freetds-stable.tgz
+# tar -xzf freets-stable.tgz
+# cd freetds-0.91
+# ./configure --prefix=/usr/local
+# make
+# make install
+# cvs -d:pserver:anonymous@freetds.cvs.sourceforge.net:/cvsroot/freetds login
+# cvs -z3 -d:pserver:anonymous@freetds.cvs.sourceforge.net:/cvsroot/freetds checkout -P freetds
