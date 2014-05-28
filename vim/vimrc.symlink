@@ -36,8 +36,22 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/buftabs'
 Bundle 'vim-scripts/stata.vim'
+
+" NERDtree
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
+
+" Proper JS Formatting
+Bundle 'maksimr/vim-jsbeautify'
+Bundle 'einars/js-beautify'
+let g:jsbeautify_file = fnameescape(fnamemodify(expand("<sfile>"), ":h")."/bundle/js-beautify/beautify.js")
+ ".vimrc
+" map <c-f> :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer>  = :call JsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 " augroup filetypedetect
 "   autocmd! BufRead,BufNewFile *.ado       set filetype=stata
