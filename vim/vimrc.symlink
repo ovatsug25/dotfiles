@@ -1,6 +1,17 @@
 " HELLO!
 " Remove any trailing whitespace that is in the file "
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+" makes sure nerd tree is open on start
+" autocmd vimenter * NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
+" closes vim if nerdtree is last window)
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" opens nerdtree if no file specified
+" this last one is bugg
+" autocmd vimenter * if !argc() | NERDTree | endif
+
+"set lines=100
+"set columns=200
 
 set nocompatible
 filetype on
@@ -11,6 +22,7 @@ nnoremap <F12>f :exe ':silent !open -a /Applications/Firefox.app %'<CR>
 nnoremap <F12>c :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 nnoremap <F12>g :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 nnoremap <F12>s :exe ':silent !open /Applications/Safari.app %'<CR>
+map <C-n> :NERDTreeToggle<CR>
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -24,6 +36,8 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/buftabs'
 Bundle 'vim-scripts/stata.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
 
 " augroup filetypedetect
 "   autocmd! BufRead,BufNewFile *.ado       set filetype=stata
