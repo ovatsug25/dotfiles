@@ -11,3 +11,5 @@ alias jss="open http://0.0.0.0:4000/"
 
 alias rsg="open -a 'Google Chrome' http://0.0.0.0:4000/"
 alias rss="open http://0.0.0.0:4000/"
+
+alias localserv="python -m SimpleHTTPServer"

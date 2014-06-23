@@ -18,11 +18,7 @@ filetype on
 filetype indent on
 filetype plugin on
 
-nnoremap <F12>f :exe ':silent !open -a /Applications/Firefox.app %'<CR>
-nnoremap <F12>c :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
-nnoremap <F12>g :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
-nnoremap <F12>s :exe ':silent !open /Applications/Safari.app %'<CR>
-map <C-n> :NERDTreeToggle<CR>
+
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -87,11 +83,6 @@ nnoremap g# g#zz
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 
 
-" Change to current working directory and display change
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-" No display  nnoremap ,cd :cd %:p:h<CR>
-cabbr <expr> %% expand('%:p:h')
-nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
 
 " Save and Browse
 nnoremap <Leader>w :w<CR>:Ex<CR><CR>
@@ -108,18 +99,32 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
+
+" Launch Browser
+nnoremap <F12>j :exe '!jekyll build'<CR>
+nnoremap <F12>f :exe ':silent !open -a /Applications/Firefox.app %'<CR>
+nnoremap <F12>c :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
+nnoremap <F12>g :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
+nnoremap <F12>s :exe ':silent !open /Applications/Safari.app %'<CR>
+
+
+" NERD Tree Toggle
+map <C-n> :NERDTreeToggle<CR>
+" Change Window
+nnoremap <C-Up> :wincmd k<CR>
+nnoremap <C-Down> :wincmd j<CR>
+nnoremap <C-Left> :wincmd h<CR>
+nnoremap <C-Right> :wincmd l<CR>
 " Tabs
-map <leader>tt :tabnew<CR>
-map <leader>te :tabedit
-map <leader>tc :tabclose<CR>
-map <leader>to :tabonly<CR>
-" gt
-map <leader>tn :tabnext<CR>
-" gT
-map <leader>tp :tabprevious<CR>
-map <leader>tf :tabfirst<CR>
-map <leader>tl :tablast<CR>
-map <leader>tm :tabmove
+nnoremap <S-Left> :tabprevious<CR>
+nnoremap <S-Right> :tabnext<CR>
+
+" Change to current working directory and display change
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" No display  nnoremap ,cd :cd %:p:h<CR>
+cabbr <expr> %% expand('%:p:h')
+nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
+
 
 " OPEN FILES IN TABS
 " vim -p file1 file2 file3
@@ -133,10 +138,14 @@ map <leader>tm :tabmove
 " imap ,t <Esc>:tabnew<CR
 
 "folding settings
-set foldmethod=indent   "fold based on indent
-set foldnestmax=10      "deepest fold is 10 levels
-set nofoldenable        "dont fold by default
-set foldlevel=1         "this is just what i use
+set foldmethod=syntax
+" set foldmethod=indent   "fold based on indent
+" set foldnestmax=10      "deepest fold is 10 levels
+" set nofoldenable        "dont fold by default
+" set foldlevel=1         "this is just what i use
+
+nnoremap <Space> zA
+vnoremap <Space> zf
 
 " Apperance
 """ Syntax highlighting
@@ -163,25 +172,36 @@ set cul " Highlight current line
 " colorscheme tomorrow-night-bright
 " set background=dark
 
+" Statusline Color Scheme 1 - %1
+hi User1 guifg=#222222 ctermfg=1 guibg=#424242 ctermbg=0
 " Statusline
 set laststatus=2
 set statusline=
-" set statusline +=%3*%<
-" set statusline +=%3*%f
-" set statusline +=%3*\ %h%m%r
-" set statusline +=%3*\%{&spelllang}
-" set statusline +=%3*%y
+set statusline +=%1*%<
+set statusline +=%1*%f
+set statusline +=%1*\ %h%m%r
+set statusline +=%1*\%{&spelllang}
+set statusline +=%1*%y
 set statusline +=%1*\%=
-set statusline +=%2*\%{v:register}
+set statusline +=%1*\%{v:register}
 set statusline +=%1*\ %l,%c%V%*
-set statusline +=%2*\ -
+set statusline +=%1*\ -
 set statusline +=%1*\ \%L%*
+" Alternate acitve window color
+au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta guibg=Red
 
-" hi User1 guifg=#424242 ctermfg=0 guibg=#222222 "ctermbg gui cterm
-" hi User2 guifg=#222222 ctermfg=1 guibg=#424242
-" hi User3 guifg=#222222 ctermfg=1 guibg=#424242 ctermbg=0
-" hi User4 guifg=#a0ee40 guibg=#222222
-" hi User5 guifg=#eeee40 guibg=#222222
+
+" set statusline=%F%m%r%h%w\
+" set statusline+=[FORMAT=%{&ff}]\
+" set statusline+=[TYPE=%Y]\
+" set statusline+=[ASCII=\%03.3b]\
+" set statusline+=[HEX=\%02.2B]\
+" set statusline+=[POS=%04l,%04v][%p%%]\
+" set statusline+=[LEN=%l(%c%V)/%L]
+
+" %c%V == Current Column
+" %l == Current Line
+" %L == Total lines
 
 " Play nice with modern computers
 """ Enable mouse support in console "
@@ -214,8 +234,8 @@ set guioptions-=T
 """""" noremap <Up> ""
 """""" noremap <Down> ""
 """""" noremap <Left> ""
-map <S-Down> <C-E>
-map <S-Up> <C-Y>
+" map <S-Down> <C-E>
+" map <S-Up> <C-Y>
 
 " For highlighting trailing whitespaces
 nnoremap <Leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
