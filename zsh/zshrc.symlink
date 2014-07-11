@@ -1,46 +1,85 @@
-# shortcut to this dotfiles path is $ZSH
+#####
+# 1 - SHORTCUT to this dotfiles path is $ZSH
+#####
 export ZSH=$HOME/.dotfiles
 
-# your project folder that we can `c [tab]` to
+#####
+# 2 - YOUR project folder that we can `c [tab]` to
+#####
 export PROJECTS=~/Code
 
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
+#####
+# USE .localrc for SECRET commands/keys
+# IN GITIGNORE
+#####
 if [[ -a ~/.localrc ]]
 then
   source ~/.localrc
 fi
 
-# all of our zsh files
+#####
+# REFER to zsh files
+#####
 typeset -U config_files
 config_files=($ZSH/**/*.zsh)
 
-# load the path files
+#####
+# 3 -LOAD the path files
+#####
 for file in ${(M)config_files:#*/path.zsh}
 do
   source $file
 done
 
-# load everything but the path and completion files
+#####
+# 4 - LOAD everything but the path and completion files
+#####
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
   source $file
 done
 
-# initialize autocomplete here, otherwise functions won't be loaded
+#####
+# 5 - INITIALIZE autocomplete here,
+#     (otherwise functions won't be loaded)
+#####
 autoload -U compinit
 compinit
 
-# load every completion after autocomplete loads
+#####
+# 6 - LOAD every completion after autocomplete loads
+######
 for file in ${(M)config_files:#*/completion.zsh}
 do
   source $file
 done
 
+# export JAVA_HOME="/usr/local/jre"
+export JAVA_HOME="/usr/bin/java"
+
+
+### RBENV
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="$HOME/.rbenv/:$PATH"
+
+### HOMEBREW
 export PATH="/usr/local/bin:$PATH"
+
+### NODE
 export PATH="/usr/local/lib/node_modules:$PATH"
 
+### Adding AWS CLI
+export PATH="$HOME/aws-eb-2.6.3/eb/macosx/python2.7:$PATH"
+export PATH="$HOME/aws-eb-2.6.3/AWSDevTools/linux:$PATH"
+export PATH="$HOME/aws-eb-2.6.3/api/bin:$PATH"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+### Postgres.app
+export PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
+
 unset config_files
+
+

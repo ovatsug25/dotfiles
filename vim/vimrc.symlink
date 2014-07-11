@@ -1,25 +1,23 @@
-" HELLO!
-" Remove any trailing whitespace that is in the file "
+
+" Remove Trailing whitespace in file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
-" makes sure nerd tree is open on start
-" autocmd vimenter * NERDTree
+" NERDtree open on start
 let g:nerdtree_tabs_open_on_console_startup=1
-" closes vim if nerdtree is last window)
+" autocmd VimEnter * NERDTree "Works well but switches cursor here
+" autocmd VimEnter * belowright split Scratch
+autocmd BufEnter * NERDTreeMirror
+" NERD Tree Toggle
+map <C-n> :NERDTreeToggle<CR>
+
+" Close NERDTree if last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" opens nerdtree if no file specified
-" this last one is bugg
-" autocmd vimenter * if !argc() | NERDTree | endif
 
-"set lines=100
-"set columns=200
 
+" Sensible Defaults
 set nocompatible
 filetype on
 filetype indent on
 filetype plugin on
-
-
-
 set encoding=utf-8
 set fileencoding=utf-8
 
@@ -27,13 +25,18 @@ set fileencoding=utf-8
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
+
 "---   :BundleInstall
-Bundle 'tomtom/tcomment_vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'vim-scripts/buftabs'
+Bundle 'vim-scripts/Nekthuth'
 Bundle 'vim-scripts/stata.vim'
 
+" Better Code
+Bundle 'scrooloose/syntastic'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'vim-scripts/scratch.vim'
+
 " NERDtree
+Bundle 'fholgado/minibufexpl.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 
@@ -41,12 +44,8 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify'
 let g:jsbeautify_file = fnameescape(fnamemodify(expand("<sfile>"), ":h")."/bundle/js-beautify/beautify.js")
- ".vimrc
-" map <c-f> :call JsBeautify()<cr>
 autocmd FileType javascript noremap <buffer>  = :call JsBeautify()<cr>
-" for html
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 " augroup filetypedetect
@@ -54,8 +53,6 @@ autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 "   autocmd! BufRead,BufNewFile *.class    set filetype=stata
 "   autocmd! BufRead,BufNewFile *.do         set filetype=stata
 " augrougp END
-
-" Bundle 'tpope/vim-fugitive.git'
 
 " noremap <C-f1> :bprev<CR>
 " noremap <C-f2> :bnext<CR>
@@ -83,13 +80,25 @@ nnoremap g# g#zz
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 
 
+" MiniBufExpl Sensible Defaults
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+
+" MiniBufExpl Colors
+hi MBENormal               guifg=#808080 guibg=fg
+hi MBEChanged              guifg=#CD5907 guibg=fg
+hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+
+
 
 " Save and Browse
 nnoremap <Leader>w :w<CR>:Ex<CR><CR>
 nnoremap <Leader>ex :Ex<CR>
-"let g:ctrlp_map = '<M-p>'
-"let g:ctrlp_cmd = 'CtrlP'
-"nnoremap <C-p> <Leader>p
 
 " Tabs
 """ makes tabs characters 2 columns long
@@ -108,8 +117,6 @@ nnoremap <F12>g :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 nnoremap <F12>s :exe ':silent !open /Applications/Safari.app %'<CR>
 
 
-" NERD Tree Toggle
-map <C-n> :NERDTreeToggle<CR>
 " Change Window
 nnoremap <C-Up> :wincmd k<CR>
 nnoremap <C-Down> :wincmd j<CR>
@@ -208,6 +215,8 @@ au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magent
 set mouse=a
 """ Enable system wide copy paste
 set clipboard+=unnamed
+vmap <C-x> :!pbcopy<CR>
+vmap <C-c> :w !pbcopy<CR><CR>
 """ Set 256 colors
 set t_Co=256
 """ OS X keybinding for end of line, beginning of line
@@ -216,12 +225,11 @@ map <D-><Right> $
 inoremap <D-Left> <Esc>^i
 inoremap <D-Right> <Esc>$i
 
-" Search
-""" Incremental searching is sexy
+" Search - Incremental searching is sexy
 set incsearch
-""" Highlight things that we find with the search
+" Search -  Highlight things that we find with the search
 set hlsearch
-""" If capitalized, will search for capitals, otherwise ignore
+" Search -  If capitalized, will search for capitals, otherwise ignore
 set ignorecase
 set smartcase
 
@@ -231,6 +239,7 @@ set guifont=Monaco:h18
 """ Hide toolbar
 set guioptions-=T
 
+" Become Evil...
 """""" noremap <Up> ""
 """""" noremap <Down> ""
 """""" noremap <Left> ""
@@ -240,3 +249,31 @@ set guioptions-=T
 " For highlighting trailing whitespaces
 nnoremap <Leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
 nnoremap <Leader>wf :match<CR>
+
+
+" I - Show Hidden
+" C - Change tree roor to selected dir
+" cd / CD - cd to dir, change tree root to it
+" A - maximize NERDTree window
+" m - for menu
+" mdy
+" mdyes
+
+" Delete but trigger menu
+" map <buffer> ,d mdy
+" Delete w/o triggering menu
+" autocmd NERDTree" map <buffer> ,d :call g:NERDTreeFileNode.GetSelected().delete()|call NERDTreeRender()<cr>
+"
+" autocmd FileType text setlocal textwidth=78
+" autocmd FileType markdown setlocal wrap
+" autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+" autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+" autocmd FileType coffee     setlocal shiftwidth=2 tabstop=2
+" autocmd FileType handlebars setlocal shiftwidth=2 tabstop=2
+" autocmd FileType scss  setlocal shiftwidth=2 tabstop=2
+" autocmd FileType css   setlocal shiftwidth=2 tabstop=2
+" autocmd FileType html  setlocal shiftwidth=2 tabstop=2
+" autocmd FileType eruby setlocal shiftwidth=2 tabstop=2
+" autocmd FileType eco   setlocal shiftwidth=2 tabstop=2
+"
+"

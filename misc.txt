@@ -59,9 +59,32 @@ mdutil -E // ERASES!!!
 mdutil -i off // TURNS OFF INDEXING!!
 (SIMILAR TO LINUX locate)
 
+// show directotyr sizes
+du -sh *
+
 TIP #4
 ls ~ | pbcopy
 pbcopy < blogpost.txt
 // grab link to latest google doodle
 pbpaste >> tasklist.txt
 curl http://www.google.com/doodles#oodles/archive | grep -A5 'latest-doodle on' | grep 'img src' | sed s/.*'<img src="\/\/'/''/ | sed s/'" alt=".*'/''/ | pbcopy
+
+
+MongoDB
+To have launchd start mongodb at login:
+    ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
+Then to load mongodb now:
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+Or, if you don't want/need launchctl, you can just run:
+    mongod --config /usr/local/etc/mongod.conf
+
+lsof | grep IPv4
+
+
+Postgres
+To have launchd start postgresql at login:
+    ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+Then to load postgresql now:
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+Or, if you don't want/need launchctl, you can just run:
+    postgres -D /usr/local/var/postgres

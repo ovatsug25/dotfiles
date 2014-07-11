@@ -1,6 +1,13 @@
 alias reload!='. ~/.zshrc'
+alias mm="middleman"
 alias cdd="cd ~/Desktop/Dropbox/"
 alias preview="open /Applications/Preview.app"
+
+alias sysvim="/usr/bin/vim"
+alias bim="/usr/local/bin/vim"
+
+alias sysemacs="/usr/bin/vim"
+alias eemacs="/usr/local/bin/emacs"
 
 alias safari="open /Applications/Safari.app"
 alias chrome="open /Applications/Chrome.app"
