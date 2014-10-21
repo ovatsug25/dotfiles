@@ -15,9 +15,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 " Sensible Defaults
 set nocompatible
-filetype on
-filetype indent on
-filetype plugin on
 set encoding=utf-8
 set fileencoding=utf-8
 
@@ -39,6 +36,7 @@ Bundle 'vim-scripts/scratch.vim'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'kchmck/vim-coffee-script'
 
 " Proper JS Formatting
 Bundle 'maksimr/vim-jsbeautify'
@@ -165,6 +163,11 @@ set antialias
 " hi relativenumber term=none cterm=none ctermbg=0
 """ Allows long line wrapping /// set wrap
 set nowrap
+" Add in for coffeescript / moved to allow for coffeescript work
+" filetype on
+" filetype indent on
+" filetype plugin on
+filetype plugin indent on
 
 " set cuc " Highlight current column
 set cul " Highlight current line

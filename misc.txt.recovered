@@ -13,8 +13,7 @@ http://www.mitchchn.me/2014/and-eight-hundred-more/
 
 IMAGES
 =====
-for file in *.jpeg; do sips -s format png $file --out $file.png; done
-for file in *.jpg; do sips -Z 480 $file --out $file; done
+for file in *.jpeg; do sips -s format png $file --out $file.png
 sips -Z 1024 *
 
 open -a Safari
