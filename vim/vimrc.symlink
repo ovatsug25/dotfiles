@@ -12,7 +12,6 @@ map <C-n> :NERDTreeToggle<CR>
 " Close NERDTree if last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-
 " Sensible Defaults
 set nocompatible
 filetype on
@@ -22,27 +21,27 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 " Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/vundle'
 
-"---   :BundleInstall
-Bundle 'vim-scripts/Nekthuth'
-Bundle 'vim-scripts/stata.vim'
+"---   :PluginInstall
+Plugin 'vim-scripts/Nekthuth'
+Plugin 'vim-scripts/stata.vim'
 
 " Better Code
-Bundle 'scrooloose/syntastic'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'vim-scripts/scratch.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'vim-scripts/scratch.vim'
 
 " NERDtree
-Bundle 'fholgado/minibufexpl.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 
 " Proper JS Formatting
-Bundle 'maksimr/vim-jsbeautify'
-Bundle 'einars/js-beautify'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
 let g:jsbeautify_file = fnameescape(fnamemodify(expand("<sfile>"), ":h")."/bundle/js-beautify/beautify.js")
 autocmd FileType javascript noremap <buffer>  = :call JsBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
@@ -80,6 +79,9 @@ nnoremap g# g#zz
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 
 
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+
 " MiniBufExpl Sensible Defaults
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
@@ -102,10 +104,10 @@ nnoremap <Leader>ex :Ex<CR>
 
 " Tabs
 """ makes tabs characters 2 columns long
-set tabstop=2
+set tabstop=4
 """ controls how tabs are set w/indent operations
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 
 
@@ -275,5 +277,7 @@ nnoremap <Leader>wf :match<CR>
 " autocmd FileType html  setlocal shiftwidth=2 tabstop=2
 " autocmd FileType eruby setlocal shiftwidth=2 tabstop=2
 " autocmd FileType eco   setlocal shiftwidth=2 tabstop=2
-"
-"
+
+"Vundle end
+call vundle#end()
+filetype plugin indent on
