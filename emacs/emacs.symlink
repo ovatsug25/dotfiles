@@ -1,286 +1,39 @@
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+(load "~/.emacs.d/my-packages.el")
+(add-hook 'after-init-hook '(lambda ()
+    (load "~/.emacs.d/my-noexternals.el")
+    (load "~/.emacs.d/ibs.el")
+))
 
-; only without ELPA/el-get
-(add-to-list 'load-path "~/.emacs.d/evil")
-(require 'evil)
-(evil-mode 1)
+; Enable installation of packages from MELPA by
+; adding an entry to package-archives
+; after (require 'package) and before the call to
+; package-initialize in your init.el or .emacs file:
 
-;;; esc quits
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+; (desktop-save-mode 1)
+; (setq history-length 250)
+; (add-to-list 'desktop-globals-to-save 'file-name-history)
+; (setq desktop-buffers-not-to-save
+;        (concat "\\("
+;                "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+;                "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+;	        "\\)$"))
+;   (add-to-list 'desktop-modes-not-to-save 'dired-mode)
+;   (add-to-list 'desktop-modes-not-to-save 'Info-mode)
+;   (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+;   (add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
 
+;Since the minibuffer appears in the echo area,
+; it can conflict with other uses of the echo area.
+; If an error message or an informative message is emitted
+; while the minibuffer is active, the message hides the
+; minibuffer for a few seconds, or until you type something;
+; then the minibuffer comes back. While the minibuffer is in use,
+; keystrokes do not echo.
 
-; Save the buffer when I exit the insert-mode:
-; (edited: do not ask to save when there is no associated file for
-; this buffer, like when in a scratch or a magit buffer)
-; (defun my-save ()
-;     (if (buffer-file-name)
-;           (evil-save))
-;     )
-; (add-hook 'evil-insert-state-exit-hook 'my-save)
-
-; " HELLO!
-; " Remove any trailing whitespace that is in the file "
-; autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
-; " makes sure nerd tree is open on start
-; " autocmd vimenter * NERDTree
-; let g:nerdtree_tabs_open_on_console_startup=1
-; " closes vim if nerdtree is last window)
-; autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-; " opens nerdtree if no file specified
-; " this last one is bugg
-; " autocmd vimenter * if !argc() | NERDTree | endif
-;
-; "set lines=100
-; "set columns=200
-;
-; set nocompatible
-; filetype on
-; filetype indent on
-; filetype plugin on
-;
-;
-;
-; set encoding=utf-8
-; set fileencoding=utf-8
-;
-; " Vundle
-; set rtp+=~/.vim/bundle/vundle/
-; call vundle#rc()
-; Bundle 'gmarik/vundle'
-;
-; "---   :BundleInstall
-; Bundle 'vim-scripts/Nekthuth'
-; Bundle 'tomtom/tcomment_vim'
-; Bundle 'scrooloose/syntastic'
-; Bundle 'vim-scripts/buftabs'
-; Bundle 'vim-scripts/stata.vim'
-;
-; " NERDtree
-; Bundle 'scrooloose/nerdtree'
-; Bundle 'jistr/vim-nerdtree-tabs'
-;
-; " Proper JS Formatting
-; Bundle 'maksimr/vim-jsbeautify'
-; Bundle 'einars/js-beautify'
-; let g:jsbeautify_file = fnameescape(fnamemodify(expand("<sfile>"), ":h")."/bundle/js-beautify/beautify.js")
-;  ".vimrc
-; " map <c-f> :call JsBeautify()<cr>
-; autocmd FileType javascript noremap <buffer>  = :call JsBeautify()<cr>
-; " for html
-; autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-; " for css or scss
-; autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-;
-; " augroup filetypedetect
-; "   autocmd! BufRead,BufNewFile *.ado       set filetype=stata
-; "   autocmd! BufRead,BufNewFile *.class    set filetype=stata
-; "   autocmd! BufRead,BufNewFile *.do         set filetype=stata
-; " augrougp END
-;
-; " Bundle 'tpope/vim-fugitive.git'
-;
-; " noremap <C-f1> :bprev<CR>
-; " noremap <C-f2> :bnext<CR>
-;
-; noremap W :bprev<CR>
-; " noremap r :bnext<CR>
-;
-; noremap \ ,
-; let mapleader = ","
-;
-; " Spell checking
-; """ Pressing \ss will toggle and untoggle spell checking
-; map <leader>ss :setlocal spell!<cr>
-;
-; " Get Search to appear in the middle of the screen
-; nnoremap n nzz
-; nnoremap N Nzz
-; nnoremap * *zz
-; nnoremap # #zz
-; nnoremap g* g*zz
-; nnoremap g# g#zz
-; " Get cursor to appear in the middle of the screen by setting SO large
-; " set scrolloff=5
-; " set so=5
-; nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
-;
-;
-;
-; " Save and Browse
-; nnoremap <Leader>w :w<CR>:Ex<CR><CR>
-; nnoremap <Leader>ex :Ex<CR>
-; "let g:ctrlp_map = '<M-p>'
-; "let g:ctrlp_cmd = 'CtrlP'
-; "nnoremap <C-p> <Leader>p
-;
-; " Tabs
-; """ makes tabs characters 2 columns long
-; set tabstop=2
-; """ controls how tabs are set w/indent operations
-; set shiftwidth=2
-; set softtabstop=2
-; set expandtab
-;
-;
-; " Launch Browser
-; nnoremap <F12>j :exe '!jekyll build'<CR>
-; nnoremap <F12>f :exe ':silent !open -a /Applications/Firefox.app %'<CR>
-; nnoremap <F12>c :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
-; nnoremap <F12>g :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
-; nnoremap <F12>s :exe ':silent !open /Applications/Safari.app %'<CR>
-;
-;
-; " NERD Tree Toggle
-; map <C-n> :NERDTreeToggle<CR>
-; " Change Window
-; nnoremap <C-Up> :wincmd k<CR>
-; nnoremap <C-Down> :wincmd j<CR>
-; nnoremap <C-Left> :wincmd h<CR>
-; nnoremap <C-Right> :wincmd l<CR>
-; " Tabs
-; nnoremap <S-Left> :tabprevious<CR>
-; nnoremap <S-Right> :tabnext<CR>
-;
-; " Change to current working directory and display change
-; nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-; " No display  nnoremap ,cd :cd %:p:h<CR>
-; cabbr <expr> %% expand('%:p:h')
-; nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
-;
-;
-; " OPEN FILES IN TABS
-; " vim -p file1 file2 file3
-; " set tabpagemax=15
-; " set showtabline=2
-; " REPLACE IN ALL TABS...
-; " :tabdo %s/foo/bar/g
-; " SET TAB NUMBER
-; " :tabm 5 for position 6
-; " nnoremap ,t <Esc>:tabnew<CR
-; " imap ,t <Esc>:tabnew<CR
-;
-; "folding settings
-; set foldmethod=syntax
-; " set foldmethod=indent   "fold based on indent
-; " set foldnestmax=10      "deepest fold is 10 levels
-; " set nofoldenable        "dont fold by default
-; " set foldlevel=1         "this is just what i use
-;
-; nnoremap <Space> zA
-; vnoremap <Space> zf
-;
-; " Apperance
-; """ Syntax highlighting
-; syntax enable
-; """ Allows for syntax highliting
-; syntax on
-; set antialias
-; """ Shows line number starting from line 1
-; " set relativenumber "set number
-; " hi relativenumber term=none cterm=none ctermbg=0
-; """ Allows long line wrapping /// set wrap
-; set nowrap
-;
-; " set cuc " Highlight current column
-; set cul " Highlight current line
-;
-; """ Adjust highlight for current line/column
-; " hi CursorLine term=none cterm=none ctermbg=0
-; " hi CursorColumn term=none cterm=none ctermbg=0
-;
-;
-; """ Makes background black
-; "set bg=dark
-; " colorscheme tomorrow-night-bright
-; " set background=dark
-;
-; " Statusline Color Scheme 1 - %1
-; hi User1 guifg=#222222 ctermfg=1 guibg=#424242 ctermbg=0
-; " Statusline
-; set laststatus=2
-; set statusline=
-; set statusline +=%1*%<
-; set statusline +=%1*%f
-; set statusline +=%1*\ %h%m%r
-; set statusline +=%1*\%{&spelllang}
-; set statusline +=%1*%y
-; set statusline +=%1*\%=
-; set statusline +=%1*\%{v:register}
-; set statusline +=%1*\ %l,%c%V%*
-; set statusline +=%1*\ -
-; set statusline +=%1*\ \%L%*
-; " Alternate acitve window color
-; au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta guibg=Red
-;
-;
-; " set statusline=%F%m%r%h%w\
-; " set statusline+=[FORMAT=%{&ff}]\
-; " set statusline+=[TYPE=%Y]\
-; " set statusline+=[ASCII=\%03.3b]\
-; " set statusline+=[HEX=\%02.2B]\
-; " set statusline+=[POS=%04l,%04v][%p%%]\
-; " set statusline+=[LEN=%l(%c%V)/%L]
-;
-; " %c%V == Current Column
-; " %l == Current Line
-; " %L == Total lines
-;
-; " Play nice with modern computers
-; """ Enable mouse support in console "
-; set mouse=a
-; """ Enable system wide copy paste
-; set clipboard+=unnamed
-; vmap <C-x> :!pbcopy<CR>
-; vmap <C-c> :w !pbcopy<CR><CR>
-; """ Set 256 colors
-; set t_Co=256
-; """ OS X keybinding for end of line, beginning of line
-; map <D-><Left> ^
-; map <D-><Right> $
-; inoremap <D-Left> <Esc>^i
-; inoremap <D-Right> <Esc>$i
-;
-; " Search
-; """ Incremental searching is sexy
-; set incsearch
-; """ Highlight things that we find with the search
-; set hlsearch
-; """ If capitalized, will search for capitals, otherwise ignore
-; set ignorecase
-; set smartcase
-;
-; " Set GUI options
-; """ Change default font
-; set guifont=Monaco:h18
-; """ Hide toolbar
-; set guioptions-=T
-;
-; """""" noremap <Up> ""
-; """""" noremap <Down> ""
-; """""" noremap <Left> ""
-; " map <S-Down> <C-E>
-; " map <S-Up> <C-Y>
-;
-; " For highlighting trailing whitespaces
-; nnoremap <Leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
-; nnoremap <Leader>wf :match<CR>
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+; Emacs interprets a double slash as
+; “ignore everything before the second slash in the pair”.
+; In the example above, /u2/emacs/src/ is ignored,
+; so the argument you supplied is /etc/termcap.
+; The ignored part of the file name is dimmed if the terminal allows it.
+; (To disable this dimming, turn off File Name Shadow mode with the
+; command M-x file-name-shadow-mode.)
